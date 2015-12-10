@@ -1,6 +1,6 @@
 import md5
 
-key = 'pqrstuv'
+key = 'bgvyzdsv'
 
 complete = False
 count = 0
@@ -10,7 +10,7 @@ while not complete:
     m.update(key + str(count))
     hash_val = m.hexdigest()
 
-    if hash_val[:5] == '00000':
+    if hash_val[:6] == '000000':
         print hash_val
         print count
         complete = True
