@@ -9,17 +9,25 @@ foreach ($fileArray as $line)
 {
 	$line = trim($line);
 
-	print "\nLooking at: $line";
+	print "\nLooking at: $line\n";
 
 	$matches = array();
-	preg_match('/([a-z\-]{1,})\d+\[([a-z]{5})\]/', $line, $matches);
+	preg_match('/([a-z\-]{1,})(\d+)\[([a-z]{5})\]/', $line, $matches);
 
 	$letters = str_replace('-', '', $matches[1]);
 	$lettersArray = str_split($letters);
+	$lettersString = $lettersArray;
+	sort($lettersString);
+	$lettersString = implode('', $lettersString);
 	$lettersArray = array_count_values($lettersArray);
 	arsort($lettersArray);
 
-	$top = $matches[2];
+	print "Letters:    $matches[1]\n";
+	print "String:     $lettersString\n";
+	print "Zone:       $matches[2]\n";
+	$top = "Top: $matches[3]\n";
+
+	$top = $matches[3];
 
 	$score = array();
 
@@ -77,7 +85,7 @@ foreach ($fileArray as $line)
 
 	if ($word == $top)
 	{
-		$correctCount += 1;
+		$correctCount += $matches[2];
 
 		print "Looks correct!\n";
 	}
