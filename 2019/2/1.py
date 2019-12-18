@@ -1,6 +1,6 @@
 import sys
 
-line_string = open('input').read().strip()
+line_string = open('q1_input').read().strip()
 
 # split the read file into a list of ints
 data = list(map(int, line_string.split(',')))
