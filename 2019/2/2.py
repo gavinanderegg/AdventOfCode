@@ -7,40 +7,43 @@ init_data = list(map(int, line_string.split(',')))
 data = init_data.copy()
 max_address = len(data) - 1
 
-if len(data) % 4 != 0:
-    print('Instruction count not divisible by 4')
+# For the first version of this, I was able to get away with reading in
+# input in groups of four, but that was a hack.
 
-instructions = []
-current_items = []
+pc = 0    # program counter
 
-# put the data into 4-int arrays to work from
-for count, item in enumerate(data):
-    current_items.append(item)
+while pc <= max_address:
+    inst = data[pc]
 
-    if (count + 1) % 4 == 0:
-        instructions.append(current_items)
-        current_items = []
+    if inst == 1:    # addition
+        arg_1 = data[pc + 1]
+        arg_2 = data[pc + 2]
+        res_addr = data[pc + 3]
 
-for inst in instructions:
-    if inst[0] == 1:
-        # addition
+        pc += 4
+
         try:
-            data[inst[3]] = data[inst[1]] + data[inst[2]]
+            data[res_addr] = data[arg_1] + data[arg_2]
         except:
             sys.exit('Error: Couldn\'t address while adding')
 
-    elif inst[0] == 2:
-        # multiplication
+    elif inst == 2:    # multiplication
+        arg_1 = data[pc + 1]
+        arg_2 = data[pc + 2]
+        res_addr = data[pc + 3]
+
+        pc += 4
+
         try:
-            data[inst[3]] = data[inst[1]] * data[inst[2]]
+            data[res_addr] = data[arg_1] * data[arg_2]
         except:
             sys.exit('Error: Couldn\'t address while multiplying')
 
-    elif inst[0] == 99:
+    elif inst == 99:
         # halt
         break
 
     else:
-        sys.exit('Error: Unknown opcode found')
+        sys.exit('Error: Unknown opcode found at pc ' + str(pc) + ' : ' + str(inst))
 
 print('Data at [0]: ' + str(data[0]))
