@@ -3,7 +3,6 @@ input = File.read("input.txt")
 signal_buffer = [] of Char
 signal_index = 0
 buffer_size = 14
-marker_found = false
 
 input.each_char_with_index do |char, index|
   signal_index = index
