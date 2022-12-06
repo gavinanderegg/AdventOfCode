@@ -19,7 +19,6 @@ input.each_char_with_index do |char, index|
 
   (0...signal_buffer.size).each do |x|
     unique_array = signal_buffer.select { |i| i == signal_buffer[x] }
-
     same += unique_array.size
   end
 
