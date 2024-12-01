@@ -4,7 +4,7 @@ const lines = data.split('\n')
 let left = []
 let right = []
 
-let distanceTotal = 0;
+let distanceTotal = 0
 
 lines.forEach((item) => {
 	let numbers = item.split(/\s+/)
