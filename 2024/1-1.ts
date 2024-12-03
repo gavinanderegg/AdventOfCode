@@ -1,4 +1,4 @@
-const data = await Deno.readTextFile('1.txt')
+const data = await Deno.readTextFile('./input/1.txt')
 const lines = data.split('\n')
 
 let left = []

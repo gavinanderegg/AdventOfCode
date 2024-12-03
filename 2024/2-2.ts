@@ -1,4 +1,4 @@
-const data = await Deno.readTextFile('2.txt')
+const data = await Deno.readTextFile('./input/2.txt')
 const lines = data.split('\n')
 
 var safeCount = 0
@@ -37,8 +37,13 @@ lines.forEach((item) => {
 
 					if (newDirection !== direction) {
 						danger += 1
+
+						direction = newDirection
+
 						return
 					}
+
+					direction = newDirection
 
 					if (Math.abs(num - lastNum) > 3 || Math.abs(num - lastNum) < 1) {
 						danger += 1

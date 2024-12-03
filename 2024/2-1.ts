@@ -1,4 +1,4 @@
-const data = await Deno.readTextFile('2.txt')
+const data = await Deno.readTextFile('./input/2.txt')
 const lines = data.split('\n')
 
 var safeCount = 0
